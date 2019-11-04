@@ -14,7 +14,7 @@ int		main(void)
 		printf("error open()");
 		return (0);
 	}
-	while ((i = get_next_line(fd, &line)))
+	while ((i = get_next_line(fd, &line) == 1))
 	{
 		printf("ret[%d] = ", i);
 		printf("|%s|\n", line);
