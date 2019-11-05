@@ -2,7 +2,7 @@
 #include <fcntl.h>
 #include "../get_next_line.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	int		fd1;
 	int		fd2;
@@ -14,13 +14,14 @@ int		main(void)
 	i = 1;
 	n = 1;
 	c = 1;
-	fd1 = open("./test_files/05_file_short_lines_without_nl_at_end", O_RDONLY);
+	argc = 0;
+	fd1 = open(argv[1], O_RDONLY);
 	if (fd1 == -1)
 	{
 		printf("error open()");
 		return (0);
 	}
-	fd2 = open("./test_files/08_file_crash_test", O_RDONLY);
+	fd2 = open(argv[2], O_RDONLY);
 	if (fd1 == -1)
 	{
 		printf("error open()");

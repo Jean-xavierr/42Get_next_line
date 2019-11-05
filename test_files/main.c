@@ -2,13 +2,14 @@
 #include <fcntl.h>
 #include "../get_next_line.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
 	int		fd;
 	int		i;
 	char	*line;
 
-	fd = open("./test_files/08_file_crash_test", O_RDONLY);
+	argc = 0;
+	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 	{
 		printf("error open()");
