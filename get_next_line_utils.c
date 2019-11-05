@@ -54,7 +54,7 @@ char	*ft_strcut_c(char *s, char c)
 	size = ft_strlen(s);
 	while (s[i] != c && s[i])
 		i++;
-	if (!(tmp = (char *)malloc(sizeof(char) * (size - i + 1))))
+	if (!(tmp = (char *)malloc(sizeof(char) * ((size - i) + 1))))
 		return (NULL);
 	if (size - i == 0)
 	{
