@@ -6,83 +6,64 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/15 09:58:23 by jereligi          #+#    #+#             */
-/*   Updated: 2019/11/01 14:43:19 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/11/06 15:07:03 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-int		ft_strlen(char *str)
-{
-	int i;
-
-	i = 0;
-	while (str[i] != '\0')
-		i++;
-	return (i);
-}
-
-char	*ft_find_line(char *s, char c)
+char	*ft_strdup_c(char *str, char c)
 {
 	int		i;
-	char	*tmp;
+	char	*new;
 
 	i = 0;
-	while (s[i] != c && s[i])
-		i++;
-	if (!(tmp = (char *)malloc(sizeof(char) * i + 1)))
+	if (!(new = (char*)malloc(sizeof(char) *
+		(ft_strlen_c(str, c) + 1))))
 		return (NULL);
-	i = 0;
-	while (s[i] != c && s[i])
+	while (str && str[i] && str[i] != c)
 	{
-		tmp[i] = s[i];
+		new[i] = str[i];
 		i++;
 	}
-	tmp[i] = '\0';
-	return (tmp);
+	new[i] = '\0';
+	return (new);
 }
 
-char	*ft_strcut_c(char *s, char c)
+char	*ft_strcut_c(char *str, char c)
 {
 	int		i;
-	int		n;
-	int		size;
-	char	*tmp;
 
 	i = 0;
-	n = 0;
-	size = ft_strlen(s);
-	while (s[i] != c && s[i])
-		i++;
-	if (!(tmp = (char *)malloc(sizeof(char) * ((size - i) + 1))))
+	if (!(str))
 		return (NULL);
-	if (size - i == 0)
-	{
-		tmp[0] = '\0';
-		return (tmp);
-	}
-	while (s[++i])
-		tmp[n++] = s[i];
-	tmp[n] = '\0';
-	return (tmp);
+	if (ft_is_c(str, c) == 0)
+		return (NULL);
+	while (str[i] != c)
+		i++;
+	i++;
+	return (ft_strdup_c(&str[i], '\0'));
 }
 
 char	*ft_strjoin(char *s1, char *s2)
 {
 	int		i;
-	int		n;
-	char	*dest;
+	int		j;
+	char	*new;
 
-	dest = (char *)malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
-	if (dest == NULL)
-		return (NULL);
 	i = 0;
-	n = 0;
-	while (s1[n])
-		dest[i++] = s1[n++];
-	n = 0;
-	while (s2[n])
-		dest[i++] = s2[n++];
-	dest[i] = '\0';
-	return (dest);
+	j = 0;
+	if (!(new = (char*)malloc(sizeof(char) *
+	((ft_strlen_c(s1, '\0') + ft_strlen_c(s2, '\0') + 1)))))
+		return (NULL);
+	while (s1[i])
+	{
+		new[i] = s1[i];
+		i++;
+	}
+	while (s2[j])
+		new[i++] = s2[j++];
+	new[i] = '\0';
+	free(s1);
+	return (new);
 }
