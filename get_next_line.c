@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:26:13 by jereligi          #+#    #+#             */
-/*   Updated: 2019/11/06 15:27:17 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/11/07 11:52:48 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ int		ft_file_reading(int fd, char **storage_read, char **line)
 
 int		get_next_line(int fd, char **line)
 {
-	static char	*storage_read[100000];
+	static char	*storage_read[250];
 
 	if (line == NULL)
 		return (GNL_ERROR);
