@@ -6,7 +6,7 @@
 /*   By: jereligi <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/14 11:26:13 by jereligi          #+#    #+#             */
-/*   Updated: 2019/11/07 11:52:48 by jereligi         ###   ########.fr       */
+/*   Updated: 2019/11/07 16:49:54 by jereligi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,10 @@ int		ft_get_info(char **storage_read, char **line, char c)
 int		ft_file_reading(int fd, char **storage_read, char **line)
 {
 	int			ret_read;
-	char		buf[BUFFER_SIZE + 1];
+	char		*buf;
 
+	if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
+		return (-1);
 	while ((ret_read = read(fd, buf, BUFFER_SIZE)))
 	{
 		if (ret_read == -1)
@@ -65,6 +67,7 @@ int		ft_file_reading(int fd, char **storage_read, char **line)
 		ft_is_c(buf, '\n') == 1)
 			break ;
 	}
+	free(buf);
 	if (ret_read >= 0 && ft_is_c(*storage_read, '\n') == 1)
 		return (ft_get_info(storage_read, line, '\n'));
 	if (ret_read == 0 && BUFFER_SIZE > 0)
